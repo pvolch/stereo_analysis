@@ -1,0 +1,8 @@
+0          #matplotlib save option
+../IACT01/ #path to data of first telescope
+../IACT02/ #path to data of second telescope
+./data/  #path to out stereo data
+14_07fix #cleaning
+run_iact1 run_iact2 out_extention(00, 01, 02)
+171120.02 171120.02 00
+161120.02 161120.02 00
