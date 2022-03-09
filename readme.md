@@ -1,0 +1,3 @@
+find_stereo_boost.py uses a "paths" file that specifies the paths to the hillas_utility output files. The "path" specifies pairs of сsv files that may contain joint events of two telescopes. The program creates a joint event file and adds the "stereo event count rate" parameter.
+
+stereo_main.py computes the shower geometry and saves the file with stereo event parameters (source position, normalized width). The script also calculates other parameters, such as the maximum development of the shower and the distance to the axis, but these parameters are intermediate and are not included in the final table.
