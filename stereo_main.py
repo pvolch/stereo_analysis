@@ -24,7 +24,7 @@ data_run = ['171020', '181020','201020', '211020', '221020', '221020.01', '23102
 #data_run = ['171220.00']
 save_file = open('events.stereo_171220', 'w')
 write = csv.writer(save_file, escapechar=' ', quoting=csv.QUOTE_NONE)
-write.writerow(['run,unix_time,event_IACT01,event_IACT02,size_IACT01,size_IACT02,dist[0]_IACT01,dist[0]_IACT02,CR_stereo,tet2_0,nwidth_0,tet2_1,nwidth_1,tet2_2,nwidth_2,tet2_3,nwidth_3,tet2_4,nwidth_4,tet2_5,nwidth_5,tet2_6,nwidth_6,tet2_7,nwidth_7'])
+write.writerow(['run,unix_time,event_IACT01,event_IACT02,size_IACT01,size_IACT02,tel_az,tel_el,dist[0]_IACT01,dist[0]_IACT02,CR_stereo,nwidth,tet2_0,tet2_1,tet2_2,tet2_3,tet2_4,tet2_5,tet2_6,tet2_7'])
 size_cut = 120
 xyc_cut = 3.5
 delta_time_cut = 0.5
@@ -149,12 +149,12 @@ for run in data_run:
                             n_nwidth[imode]+=1
                             #print(mode, nwidth, math.sqrt(x_source_error ** 2 + y_source_error ** 2), datetime.fromtimestamp(param_2tel[0]['unix_time']))
                             #print(mode, param_2tel[0]['por'], datetime.fromtimestamp(param_2tel[0]['unix_time']))
-                save_list = [run, param_2tel[0]['unix_time'], param_2tel[0]['event_numb'], param_2tel[1]['event_numb'], round(param_2tel[0]['size'],2), round(param_2tel[1]['size'],2),
+                save_list = [run, param_2tel[0]['unix_time'], param_2tel[0]['event_numb'], param_2tel[1]['event_numb'], round(param_2tel[0]['size'],2), round(param_2tel[1]['size'],2), param_2tel[0]['tel_az'], param_2tel[0]['tel_el'],
                                 round(np.sqrt(param_2tel[0]['Xc[0]'] ** 2 + param_2tel[0]['Yc[0]'] ** 2),3), round(np.sqrt(param_2tel[1]['Xc[0]'] ** 2 + param_2tel[1]['Yc[0]'] ** 2),3),
                                 round(param_2tel[1]['cr_stereo'],1)]
+                save_list.append(round(nwidth_array[0],2))
                 for imode,xy in enumerate(xy_sb):
                     save_list.append(round(tet2_array[imode],3))
-                    save_list.append(round(nwidth_array[imode],2))
                 write.writerow(save_list)
         print(run, location, n_nwidth)        #sys.exit(0)
         for i in range(len(xy_sb)):
